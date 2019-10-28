@@ -1,0 +1,7 @@
+text text text
+
+{$ foR ab_123 1 "aaa" $} sdnfkg jdngsr jkndf {$= var @func 123.5 125 -53 "bfd" $}
+{$  for i 1 10 2 $}{$= i $} test {$ end $}
+text
+{$ END $}
+text2

@@ -1,0 +1,10 @@
+test test
+test test
+{ aaa } { = }
+{$ FOR a 1 2 3 $}
+aaa
+{$ FOR b 1 2 3 $}text{$END$}
+{$= @aaa "a\"aaaa\n\naaaa" 2.5 1 name_name $}
+{$ END $}
+test test
+ 

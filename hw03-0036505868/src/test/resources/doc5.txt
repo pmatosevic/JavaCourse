@@ -1,0 +1,5 @@
+This is sample text.
+{$ FOR i 1 10 1 $}
+This is {$= i $}-th time this message is generated.
+{$END$}
+{$FOR i 0 

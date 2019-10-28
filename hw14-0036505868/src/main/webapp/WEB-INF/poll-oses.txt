@@ -1,0 +1,6 @@
+Glasanje za OS
+Od sljedećih operacijskih sustava, koji koristite? Kliknite na link kako biste glasali!
+Windows	https://www.microsoft.com/en-us/windows	0
+Linux	https://ubuntu.com/	0
+Mac OS X	https://www.apple.com/macos/mojave/	0
+Ostalo	https://en.wikipedia.org/wiki/Operating_system	0

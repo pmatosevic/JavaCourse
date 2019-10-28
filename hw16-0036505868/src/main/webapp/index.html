@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Galerija slika</title>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript">
+		
+		function getTags() {
+			$("#photo-view").hide();
+			$.ajax({
+				url: "rest/tag/",
+				dataType: "json",
+				success: function (data) {
+					let tags = data;
+					for (let i=0; i<tags.length; i++) {
+						let newButton =  $("<input/>")
+							.attr({ type: "button", name: tags[i], value: tags[i]})
+							.on("click", function() { loadTagImages(tags[i]); })
+							.addClass("button");
+						$("#tags-list").append(newButton);
+					}
+				}
+			});
+		}
+		
+		function loadTagImages(tag) {
+			$("#photo-view").hide();
+			$("#photo-list").empty();
+			$.ajax({
+				url: "rest/tag/" + tag,
+				dataType: "json",
+				success: function(data) {
+					for(let i=0; i<data.length; i++) {
+						let newImage = $("<img/>")
+							.attr({src: "servlets/thumb/" + data[i]})
+							.on("click", function() { showImage(data[i]); });
+						$("#photo-list").append(newImage);
+					}
+				}
+			});
+		}
+		
+		function showImage(filename) {
+			$("#photo-view").hide();
+			$.ajax({
+				url: "rest/image/" + filename,
+				dataType: "json",
+				success: function(data) {
+					$("#photo-title").html(data.title);
+					$("#big-image").attr("src", "servlets/image/" + data.filename);
+					let tagsString = "";
+					for (let i=0; i<data.tags.length; i++) {
+						tagsString += data.tags[i];
+						if (i < data.tags.length-1) tagsString += ", ";
+					}
+					$("#img-tags").html(tagsString);
+					$("#photo-view").show();
+				}
+			});
+		}
+		
+		$(document).ready(getTags);
+		
+	</script>
+</head>
+<body>
+	<div class="content">
+		<h1>Galerija slika</h1>
+		
+		<div id="tags-list" class="element">
+		</div>
+		
+		<div id="photo-list" class="element">
+		</div>
+		
+		<div id="photo-view" class="element">
+			<h3 id="photo-title"></h3>
+			<img id="big-image" alt="" src="" />
+			<p id="tags">Image tags: <span id="img-tags"></span></p>
+		</div>
+	</div>
+</body>
+</html>
