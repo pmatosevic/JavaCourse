@@ -1,2 +1,2 @@
 # JavaCourse
-Homeworks from Java Course
+Homeworks from the course Introduction to Java Programming Language
